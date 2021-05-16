@@ -12,6 +12,54 @@
         {% include 'product/parts/list_item.html' %}
     {% endfor %}
     
-    </div>    
+    </div>
+    
+    {% for category in menu_categories %}
+      <div class="demo">
+        <h3 class="subtitle">{{ category.title }} > </h3>
+
+        {% include 'core/parts/slider.html' %}
+      </div>
+      
+      {% block SliderScript %}
+        <script type="text/javascript">
+          $(document).ready(function() {
+              $("#content-slider-{{ forloop.counter }}").lightSlider({
+                        loop:false,
+                        keyPress:true
+                    });
+            });
+        </script>      
+      {% endblock SliderScript %}
+      
+      {% block SliderStyles %}
+        <style>
+          ul{
+            list-style: none outside none;
+            padding-left: 0;
+            margin: 0;
+        }
+        .demo .item{
+            margin-bottom: 60px;
+        }
+        .content-slider-{{ forloop.counter }} li{
+            background-color: #ed3020;
+            text-align: center;
+            color: #FFF;
+        }
+        .content-slider-{{ forloop.counter }} h3 {
+            margin: 0;
+            padding: 70px 0;
+        }
+        .demo{
+            width: 800px;
+        }
+        </style>
+      {% endblock SliderStyles %}
+        
+        
+    {% endfor %}
+      
+      
         
 {% endblock content %}

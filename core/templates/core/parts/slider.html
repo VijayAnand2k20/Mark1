@@ -1,0 +1,11 @@
+<div class="item">
+    <ul id="content-slider-{{ forloop.counter }}" class="content-slider-{{ forloop.counter }}">            
+        <h3 class="subtitle">{{ category.title }} > </h3>
+        {% for product in category.products.all %}
+            <li>
+                <h3>{{ product.title }}</h3>
+            </li>
+        {% endfor %}    
+
+    </ul>
+</div>
