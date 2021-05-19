@@ -53,7 +53,9 @@ class Product(models.Model):
         img.thumbnail(size)
         
         thumb_io = BytesIO()
-        img.save(thumb_io, 'JPEG', quality=85)
+        # img.save(thumb_io, 'JPEG', quality=85)
+        img.save(thumb_io, format='PNG', quality=85)
+        # im.save(output, format='PNG', optimize=True, quality=95)
 
         thumbnail = File(thumb_io, name=image.name.replace("uploads/",""))
 

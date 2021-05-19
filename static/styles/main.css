@@ -2,7 +2,7 @@
     background: #444;
 }
 
-.VendorAdminNavButton:hover{
+.Slider_Heading:hover, .VendorAdminNavButton:hover{
     text-decoration: underline !important;
     text-decoration-color: black !important;
 }

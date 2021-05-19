@@ -26,12 +26,12 @@
             <div class="column is-12">
                 <h2 class="subtitle">Similar Products</h2>
             </div>
-        </div>
 
         
         {% for product in similar_products %}
             {% include 'product/parts/list_item.html' %}
         {% endfor %}
+        </div>
             
     {% endif %}
         

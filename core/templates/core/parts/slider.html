@@ -1,11 +1,28 @@
 <div class="item">
     <ul id="content-slider-{{ forloop.counter }}" class="content-slider">            
-        <h3 class="subtitle">{{ category.title }} > </h3>
-        {% for product in category.products.all %}
-            <li>
-                <h3>{{ product.title }}</h3>
-            </li>
-        {% endfor %}    
+      <h3 class="subtitle">{{ category.title }} > </h3>
+      {% for product in category.products.all %}
+        <li>
+          <a href="{% url 'product' product.category.slug product.slug %}">
+            <div class="card">
+              <div class="card-image">
+                <figure class="image">
+                  <img style="width: 240px;height: 128px;" src="{{ product.get_thumbnail }}" alt="Image">
+                </figure>
+              </div>
+
+              <div class="card-content">
+                <div class="media">
+                  <div class="media-content">
+                    <p class="title is-5">{{ product.title }}</p>
+                    <p>₹{{ product.price }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </li>
+      {% endfor %}    
 
     </ul>
 </div>

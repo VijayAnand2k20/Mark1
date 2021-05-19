@@ -16,20 +16,22 @@
     
     {% for category in menu_categories %}
       <div class="demo">
-        <h3 class="subtitle">{{ category.title }} > </h3>
-
+        <a class="Slider_Heading" href="{% url 'category' category.slug %}">
+          <h3 style="display: inline;" class="subtitle">{{ category.title }}</h3>
+        </a>
+        <span> > </span>
         {% include 'core/parts/slider.html' %}
       </div>
       
       {% block SliderScript %}
-        <script type="text/javascript">
-          $(document).ready(function() {
-              $("#content-slider-{{ forloop.counter }}").lightSlider({
-                        loop:false,
-                        keyPress:true
-                    });
-            });
-        </script>      
+      <script type="text/javascript">
+        $(document).ready(function() {
+            $("#content-slider-{{ forloop.counter }}").lightSlider({
+                      loop:false,
+                      keyPress:true
+                  });
+          });
+      </script>    
       {% endblock SliderScript %}
       
       {% block SliderStyles %}
@@ -38,28 +40,26 @@
             list-style: none outside none;
             padding-left: 0;
             margin: 0;
+            overflow: visible;
         }
         .demo .item{
             margin-bottom: 60px;
-        }
-        .content-slider li{
-            background-color: #ed3020;
-            text-align: center;
-            color: #FFF;
         }
         .content-slider h3 {
             margin: 0;
             padding: 70px 0;
         }
-        .demo{
-            width: 800px;
+        .content-slider{
+          height: 16em !important;
+          width: 85vw !important;
+        }
+        .content-slider li{
+          width: 15em !important;
         }
         </style>
       {% endblock SliderStyles %}
         
         
     {% endfor %}
-      
-      
-        
+
 {% endblock content %}
