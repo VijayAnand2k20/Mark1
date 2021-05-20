@@ -16,22 +16,40 @@
     
     {% for category in menu_categories %}
       <div class="demo">
-        <a class="Slider_Heading" href="{% url 'category' category.slug %}">
-          <h3 style="display: inline;" class="subtitle">{{ category.title }}</h3>
-        </a>
-        <span> > </span>
+        <h3 class="subtitle">{{ category.title }} > </h3>
+
         {% include 'core/parts/slider.html' %}
       </div>
       
       {% block SliderScript %}
-      <script type="text/javascript">
-        $(document).ready(function() {
-            $("#content-slider-{{ forloop.counter }}").lightSlider({
-                      loop:false,
-                      keyPress:true
-                  });
+        <script type="text/javascript">
+          $(document).ready(function() {
+            $('#content-slider-{{ forloop.counter }}').lightSlider({
+                item:4,
+                loop:false,
+                slideMove:1,
+                easing: 'cubic-bezier(0.25, 0, 0.25, 1)',
+                speed:600,
+                responsive : [
+                    {
+                        breakpoint:800,
+                        settings: {
+                            item:3,
+                            slideMove:1,
+                            slideMargin:6,
+                          }
+                    },
+                    {
+                        breakpoint:480,
+                        settings: {
+                            item:2,
+                            slideMove:1
+                          }
+                    }
+                ]
+            });  
           });
-      </script>    
+        </script>      
       {% endblock SliderScript %}
       
       {% block SliderStyles %}
@@ -40,26 +58,45 @@
             list-style: none outside none;
             padding-left: 0;
             margin: 0;
-            overflow: visible;
-        }
-        .demo .item{
-            margin-bottom: 60px;
-        }
-        .content-slider h3 {
-            margin: 0;
-            padding: 70px 0;
-        }
-        .content-slider{
-          height: 16em !important;
-          width: 85vw !important;
-        }
-        .content-slider li{
-          width: 15em !important;
-        }
+          }
+          .demo .item{
+              margin-bottom: 60px;
+          }
+          .content-slider h3 {
+              margin: 0;
+              padding: 70px 0;
+          }
+          .demo{
+              width: 90vw;
+          }
+          .content-slider{
+            height: 180px;
+          }
+          .lSSlideWrapper{
+            height: 185px;
+          }
+          .slider-card{
+            height: 180px;
+          }
+          .slider-card .card-image,.slider-card .card-image figure,.slider-card .card-image figure img{
+            height: 100px;
+          }
+          .slider-card .card-content, .slider-card .card-content .content{
+            padding: 0;
+            text-align: center;
+            height: 80px;
+            margin-top: 0.5rem;
+            /* font-weight: 500; */
+          }
+          .lSSlideOuter .lightSlider, .content-slider{
+            height: 185px !important;
+          }
         </style>
       {% endblock SliderStyles %}
         
         
     {% endfor %}
-
+      
+      
+        
 {% endblock content %}
