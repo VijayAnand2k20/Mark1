@@ -29,6 +29,12 @@
     {% block SliderStyles %}
       
     {% endblock SliderStyles %}
+
+    
+    {% block AddproductFormStyles %}
+      
+    {% endblock AddproductFormStyles %}
+      
       
 </head>
 <body>
@@ -51,10 +57,10 @@
               <form action="{% url 'search' %}" method="get">
                 <div class="field has-addons">
                   <div class="control select">
-                    <select>
-                      
+                    <select name="categorySelected">
+                        <option name="categorySelected" value="All">All</option>
                       {% for category in menu_categories %}
-                        <option>{{ category.title }}</option>
+                        <option name="categorySelected" value="{{ category.title }}">{{ category.title }}</option>
                       {% endfor %}
                         
                     </select>

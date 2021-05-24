@@ -33,8 +33,12 @@ def category(request, category_slug):
 # Search...
 def search(request):
     query = request.GET.get('query', '')
-    products = Product.objects.filter(Q(title__icontains=query) | Q(description__icontains=query))
-
+    categorySelected = request.GET.get('categorySelected','')
+    # print(categorySelected)
+    if categorySelected != 'All':
+        products = Product.objects.filter(category__title=categorySelected).filter(Q(title__icontains=query) | Q(description__icontains=query))
+    else:
+        products = Product.objects.filter(Q(title__icontains=query) | Q(description__icontains=query))
     context = {
         'query' : query,
         'products' : products,

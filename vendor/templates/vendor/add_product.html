@@ -5,19 +5,123 @@
 
 
 {% block content %}
-    <h1 class="title">Add products</h1>
-
-    <form action="." method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-
-         {{ form.as_p }}
-
-         <div class="field">
-             <div class="control">
-                 <button class="button is-dark is-uppercase">
-                     Submit
-                 </button>
-             </div>
-         </div>
-    </form>
+    <div class="container">
+        <form id="AddProductForm" action="." method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h1 class="title has-text-centered">Add Product</h1>
+  
+            <label id="titleLabel" for="title">Product Name:</label>
+            <input name="title" required id="id_title" class="input ml-3" type="text" placeholder="Enter the product name...">
+  
+            <br>
+            <br>
+  
+            <label for="category">Choose the category of product:</label>
+            <div class="select">
+                <!-- <select name="category" class="ml-3" required id="id_category">
+                    <option value="1">All</option>
+                    <option value="4">Electronics</option>
+                    <option value="5">Shoes</option>
+                    <option value="6">Furniture</option>
+                    <option value="7">Accessories</option>
+                </select> -->
+                {{ form.category }}
+            </div>
+  
+            <br>
+            <br>
+  
+            <label for="ImageID">Choose an image for Product:</label>
+            <input type="file" name="image" accept="image/*" class="ml-3" id="ImageID id_image">
+  
+            <br>
+            <br>
+  
+            <div class="control">
+              <label for="id_description">Description:</label>
+              <textarea name="description" rows="6" id="id_description" class="textarea has-fixed-size" placeholder="Enter a description about the product within 255 characters"></textarea>
+            </div>
+  
+            <br>
+            <br>
+            
+            <label for="priceID">Price(in Rupees):</label>
+            <input type="number" step="0.01" required class="input" name="price" id="id_price">
+  
+            <br>
+            <br>
+  
+            <div class="control">
+              <button type="submit" class="button is-primary">Save</button>
+              <button type="reset" class="button is-light">Clear</button>
+            </div>
+          </form>
+        </div>
 {% endblock content %}
+
+
+{% block AddproductFormStyles %}
+    <style>
+        nav{
+            margin-bottom: 0 !important;
+        }
+        .section{
+            padding-top: 1rem !important;
+        }
+        .container {
+            font-family: "Josefin Sans";
+        }
+
+        .container h1.title:hover {
+            text-decoration: underline;
+            text-decoration-thickness: 7%;
+        }
+
+        .container label {
+            line-height: 40px;
+            font-size: larger;
+        }
+
+        .container input {
+            font-family: "Josefin Sans";
+            width: 25vw;
+        }
+
+        .container .select #id_category {
+            margin-left: 1rem;
+            font-family: "Josefin Sans";
+        }
+
+        .container .select #id_category option {
+            font-family: "Josefin Sans";
+        }
+
+        .container #ImageID {
+            font-size: 16px;
+            background: white;
+            border-radius: 10px;
+            width: 350px;
+            outline: none;
+        }
+
+        .container .control textarea {
+            min-width: 50vw;
+            width: 50vw;
+            font-family: "Josefin Sans";
+        }
+
+        .container #id_price {
+            margin-left: 1rem;
+            width: 10vw !important;
+        }
+
+        .container ::-webkit-file-upload-button {
+            width: 150px;
+            color: white;
+            background: #333;
+            padding: 15px;
+            border: none;
+            border-radius: 25px;
+        }
+    </style>
+{% endblock AddproductFormStyles %}
